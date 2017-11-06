@@ -16,7 +16,9 @@ class ArticlesController < ApplicationController
   
   def  create
     @article = Article.new(article_params)
-    
+
+    # hardcode user for dev. until we get authentication working
+    @article.user = User.first
     if @article.save
       flash[:success] = "article was successfully created"      
       redirect_to article_path(@article)
